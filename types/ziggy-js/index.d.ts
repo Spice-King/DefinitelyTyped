@@ -50,7 +50,7 @@ export class Router extends String {
     current(name: string): boolean;
     check(name: string): boolean;
     extractParams(uri: string, template: string, delimiter: string): NormalizedParams;
-    get params(): NormalizedParams;
+    get params(): Record<string, string>;
     parse(): void;
     url(): string;
     toString(): string;
