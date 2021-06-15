@@ -6,7 +6,7 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 // TypeScript Version: 3.0
 
-/// <reference lib="dom"/>
+// <reference lib="dom"/>
 
 declare const version: string;
 
@@ -14,6 +14,7 @@ declare const GlobalWorkerOptions: GlobalWorkerOptions;
 
 interface GlobalWorkerOptions {
     workerSrc: string;
+    workerPort: PDFWorker | null;
 }
 
 interface PDFTreeNode {
@@ -393,6 +394,12 @@ interface PDFViewerParams {
     viewer?: HTMLElement;
 }
 
+interface GetTextContentParams {
+    normalizeWhitespace?: boolean;
+    disableCombineTextItems?: boolean;
+    includeMarkedContent?: boolean;
+}
+
 /**
  * RenderTask is basically a promise but adds a cancel function to termiate it.
  **/
@@ -450,7 +457,7 @@ interface PDFPageProxy {
     /**
      * A promise that is resolved with the string that is the text content frm the page.
      **/
-    getTextContent(): Promise<TextContent>;
+    getTextContent(params?: GetTextContentParams): Promise<TextContent>;
 
     /**
      * marked as future feature
